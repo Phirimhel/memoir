@@ -8,8 +8,6 @@
 
 <style scoped>
 .header {
-  background: #007bff;
-  color: white;
   text-align: center;
   padding: 20px;
 }

@@ -1,6 +1,6 @@
 <template>
   <el-menu default-active="2" class="el-menu" :collapse="isCollapse">
-    <el-card shadow="always">Always</el-card>
+    <el-card shadow="always">Always</el-card> 123
     <el-menu-item index="1" class="centered-menu-item">
       <el-icon><UserFilled /></el-icon>
       <template #title>Navigator One</template>
