@@ -1,7 +1,6 @@
-/* Override Element Plus theme variables */
 $colors: (
   'primary': (
-    'base': #409eff,
+    'base': #151616,
   ),
   'success': (
     'base': #67c23a,
@@ -25,6 +24,7 @@ $colors: (
 );
 
 @use 'element-plus/theme-chalk/src/index.scss' as *;
+@use './colors' as *;
 
 :root {
   --el-bg-color: #ffffff;
@@ -33,43 +33,166 @@ $colors: (
   --el-text-color-primary: #303133;
   --el-text-color-regular: #606266;
   --el-border-color: #dcdfe6;
-}
+  --el-font-family:
+    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  font-family: var(--el-font-family);
 
-/* Dark theme */
-.dark {
-  --el-bg-color: #141414;
-  --el-bg-color-page: #0a0a0a;
-  --el-bg-color-overlay: #1d1e1f;
-  --el-text-color-primary: #ffffff;
-  --el-text-color-regular: #e5eaf3;
-  --el-border-color: #4c4d4f;
+  // el-menu
+  --el-menu-bg-color: #ffffff;
+  --el-menu-text-color: #151616;
+  --el-menu-hover-bg-color: #12181800;
+  --el-menu-active-color: #53c3c3;
 
-  .el-card__body {
-    background-color: #15202b !important;
-    color: #ffffff !important;
-  }
-
-  background: #15202b;
-  --el-menu-bg-color: #15202b;
-  --el-menu-text-color: #ffffff;
-  --el-menu-hover-bg-color: #c02323;
-  --el-menu-active-bg-color: #15202b;
+  --el-menu-active-bg-color: #192b15;
   --el-menu-active-text-color: #ffffff;
   --el-menu-hover-text-color: #ffffff;
 }
 
-/* Dim theme */
-.dim {
-  --el-bg-color: #15202b;
-  --el-bg-color-page: #1c2732;
-  --el-bg-color-overlay: #20304a;
-  --el-text-color-primary: #ffffff;
-  --el-text-color-regular: #e5eaf3;
-  --el-border-color: #4c4d4f;
+/* Light theme (default) */
+.el-card {
+  background-color: #ffffff !important;
+  border-color: #dcdfe6 !important;
+  color: #303133 !important;
+}
+
+.el-card__body {
+  background-color: #ffffff !important;
+  color: #303133 !important;
+}
+
+.el-card__header {
+  background-color: #ffffff !important;
+  border-bottom-color: #dcdfe6 !important;
+  color: #303133 !important;
+}
+
+/* Dark theme */
+
+.dark {
+  --el-bg-color: #{$dark-bg-color};
+  --el-bg-color-page: #{$dark-bg-color-page};
+  --el-bg-color-overlay: #{$dark-bg-color-overlay};
+  --el-text-color-primary: #{$dark-text-color-primary};
+  --el-text-color-regular: #{$dark-text-color-regular};
+  --el-border-color: #{$dark-border-color};
+  --el-font-family:
+    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  font-family: var(--el-font-family);
+
+  background: #{$dark-background};
+  color: #{$dark-text-color};
+
+  .el-card {
+    background-color: #{$dark-card-bg} !important;
+    border-color: #{$dark-card-border} !important;
+    color: #{$dark-card-text} !important;
+    backdrop-filter: blur(10px);
+  }
 
   .el-card__body {
-    background-color: #20304a !important;
-    color: #ffffff !important;
+    background-color: #{$dark-card-bg} !important;
+    color: #{$dark-card-text} !important;
+    backdrop-filter: blur(10px);
+  }
+
+  .el-card__header {
+    background-color: #{$dark-card-header-bg} !important; /* Semi-transparent background */
+    border-bottom-color: #{$dark-card-border} !important;
+    color: #{$dark-card-text} !important;
+    backdrop-filter: blur(10px);
+  }
+  // el-menu
+  --el-menu-bg-color: #{$dark-menu-bg};
+  --el-menu-text-color: #{$dark-menu-text};
+  --el-menu-hover-bg-color: #{$dark-menu-hover-bg};
+  --el-menu-active-color: #{$dark-menu-active};
+
+  --el-menu-active-bg-color: #{$dark-menu-active-bg};
+  --el-menu-active-text-color: #{$dark-menu-active-text};
+  --el-menu-hover-text-color: #{$dark-menu-hover-text};
+
+  //el-button
+  .el-button {
+    --el-button-bg-color: #{$dark-button-bg};
+    --el-button-text-color: #{$dark-button-text};
+    --el-button-hover-bg-color: #{$dark-button-hover-bg};
+    --el-button-active-bg-color: #{$dark-button-active-bg-color};
+    --el-button-hover-text-color: #{$dark-button-hover-text-color};
+    --el-button-active-text-color: #{$dark-button-active-text-color};
+    --el-button-border-color: #{$dark-border-color};
+    --el-button-hover-border-color: #{$dark-button-hover-border-color};
+  }
+
+  .el-button--primary {
+    --el-button-bg-color: #{$dark-text-color};
+    --el-button-text-color: #{$dark-button-bg};
+  }
+}
+
+/* Arma theme */
+.arma {
+  --el-bg-color: #{$dark-bg-color};
+  --el-bg-color-page: #{$dark-bg-color-page};
+  --el-bg-color-overlay: #{$dark-bg-color-overlay};
+  --el-text-color-primary: #{$dark-text-color-primary};
+  --el-text-color-regular: #{$dark-text-color-regular};
+  --el-border-color: #{$dark-border-color};
+  --el-font-family:
+    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  font-family: var(--el-font-family);
+
+  background: #{$arma-bg-color-page};
+  color: #{$dark-text-color};
+
+  .el-card {
+    background-color: #{$dark-card-bg} !important;
+    border-color: #{$dark-card-border} !important;
+    color: #{$dark-card-text} !important;
+  }
+
+  .el-card__body {
+    background-color: #{$dark-card-bg} !important;
+    color: #{$dark-card-text} !important;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a0/Brown-dominant_%22highland%22_ERDL_camouflage_pattern_swatch.svg');
+  }
+
+  .el-card__header {
+    background-color: #{$arma-card-bg} !important; /* Semi-transparent background */
+    border-bottom-color: #{$dark-card-border} !important;
+    color: #{$dark-card-text} !important;
+    background-image: url('https://i.gifer.com/74LE.gif');
+    font-weight: 600;
+    font-size: 20px;
+  }
+  // el-menu
+  .el-menu {
+    --el-menu-bg-color: #{$arma-bg-color-page};
+    --el-menu-text-color: #{$dark-menu-text};
+    --el-menu-hover-bg-color: #{$dark-menu-hover-bg};
+    --el-menu-active-color: #{$dark-menu-active};
+
+    --el-menu-active-bg-color: #{$dark-menu-active-bg};
+    --el-menu-active-text-color: #{$dark-menu-active-text};
+    --el-menu-hover-text-color: #{$dark-menu-hover-text};
+  }
+  //el-button
+  .el-button {
+    --el-button-bg-color: #{$dark-button-bg};
+    --el-button-text-color: #{$dark-button-text};
+    --el-button-hover-bg-color: #{$dark-button-hover-bg};
+    --el-button-active-bg-color: #{$dark-button-active-bg-color};
+    --el-button-hover-text-color: #{$dark-button-hover-text-color};
+    --el-button-active-text-color: #{$dark-button-active-text-color};
+    --el-button-border-color: #{$dark-border-color};
+    --el-button-hover-border-color: #{$dark-button-hover-border-color};
+  }
+
+  .el-button--primary {
+    --el-button-bg-color: #{$dark-text-color};
+    --el-button-text-color: #{$dark-button-bg};
   }
 }
 
