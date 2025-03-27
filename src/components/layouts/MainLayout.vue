@@ -16,7 +16,7 @@
 
         <!-- Content -->
         <div class="content">
-          <MockContent />
+          <Content />
         </div>
       </main>
     </div>
@@ -32,7 +32,7 @@
 import Header from '@/components/layouts/element-plus-components/Header.vue'
 import MobileTabBar from '@/components/layouts/element-plus-components/MobileTabBar.vue'
 import Sidebar from './element-plus-components/Sidebar.vue'
-import MockContent from './element-plus-components/MockContent.vue'
+import Content from './element-plus-components/Content.vue'
 import ThemesSwitcher from '@/components/buttons/ThemesSwitcher.vue'
 </script>
 
@@ -66,7 +66,7 @@ import ThemesSwitcher from '@/components/buttons/ThemesSwitcher.vue'
 }
 
 .content {
-  padding: 5px;
+  padding: 10px;
 }
 
 .tab-bar {

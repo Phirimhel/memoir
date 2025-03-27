@@ -156,7 +156,7 @@ $colors: (
   .el-card__body {
     background-color: #{$dark-card-bg} !important;
     color: #{$dark-card-text} !important;
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a0/Brown-dominant_%22highland%22_ERDL_camouflage_pattern_swatch.svg');
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e0/Camouflage_wz._89_Puma.svg');
   }
 
   .el-card__header {
@@ -170,17 +170,17 @@ $colors: (
   // el-menu
   .el-menu {
     --el-menu-bg-color: #{$arma-bg-color-page};
-    --el-menu-text-color: #{$dark-menu-text};
-    --el-menu-hover-bg-color: #{$dark-menu-hover-bg};
-    --el-menu-active-color: #{$dark-menu-active};
+    --el-menu-text-color: #{$arma-menu-text};
+    --el-menu-hover-bg-color: #{$arma-menu-hover-bg};
+    --el-menu-active-color: #{$arma-menu-active};
 
-    --el-menu-active-bg-color: #{$dark-menu-active-bg};
-    --el-menu-active-text-color: #{$dark-menu-active-text};
-    --el-menu-hover-text-color: #{$dark-menu-hover-text};
+    --el-menu-active-bg-color: #{$arma-menu-active-bg};
+    --el-menu-active-text-color: #{$arma-menu-active-text};
+    --el-menu-hover-text-color: #{$arma-menu-hover-text};
   }
   //el-button
   .el-button {
-    --el-button-bg-color: #{$dark-button-bg};
+    --el-button-bg-color: #{$arma-card-bg};
     --el-button-text-color: #{$dark-button-text};
     --el-button-hover-bg-color: #{$dark-button-hover-bg};
     --el-button-active-bg-color: #{$dark-button-active-bg-color};
@@ -192,7 +192,7 @@ $colors: (
 
   .el-button--primary {
     --el-button-bg-color: #{$dark-text-color};
-    --el-button-text-color: #{$dark-button-bg};
+    --el-button-text-color: #{$arma-card-bg};
   }
 }
 

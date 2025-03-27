@@ -21,5 +21,9 @@ import '@/styles/themes.scss'
     'Open Sans',
     'Helvetica Neue',
     sans-serif;
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 </style>
