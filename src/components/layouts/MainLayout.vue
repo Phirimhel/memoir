@@ -1,5 +1,6 @@
 <template>
   <div class="layout">
+    <ThemesSwitcher />
     <!-- Sidebar -->
     <aside class="sidebar">
       <slot name="sidebar"><Sidebar /></slot>
@@ -15,22 +16,7 @@
 
         <!-- Content -->
         <div class="content">
-          <slot>📄 Контент по умолчанию</slot>
-          <div style="height: 200px; background-color: gray; margin-top: 20px"></div>
-          <div style="height: 200px; background-color: gray; margin-top: 20px"></div>
-          <div style="height: 200px; background-color: gray; margin-top: 20px"></div>
-          <div style="height: 200px; background-color: gray; margin-top: 20px"></div>
-          <div style="height: 200px; background-color: gray; margin-top: 20px"></div>
-          <div style="height: 200px; background-color: gray; margin-top: 20px"></div>
-          <div style="height: 200px; background-color: gray; margin-top: 20px"></div>
-          <div style="height: 200px; background-color: gray; margin-top: 20px"></div>
-          <div style="height: 200px; background-color: gray; margin-top: 20px"></div>
-          <div style="height: 200px; background-color: gray; margin-top: 20px"></div>
-          <div style="height: 200px; background-color: gray; margin-top: 20px"></div>
-          <div style="height: 200px; background-color: gray; margin-top: 20px"></div>
-          <div style="height: 200px; background-color: gray; margin-top: 20px"></div>
-          <div style="height: 200px; background-color: gray; margin-top: 20px"></div>
-          <div style="height: 200px; background-color: gray; margin-top: 20px"></div>
+          <Content />
         </div>
       </main>
     </div>
@@ -46,6 +32,8 @@
 import Header from '@/components/layouts/element-plus-components/Header.vue'
 import MobileTabBar from '@/components/layouts/element-plus-components/MobileTabBar.vue'
 import Sidebar from './element-plus-components/Sidebar.vue'
+import Content from './element-plus-components/Content.vue'
+import ThemesSwitcher from '@/components/buttons/ThemesSwitcher.vue'
 </script>
 
 <style scoped>
@@ -78,7 +66,7 @@ import Sidebar from './element-plus-components/Sidebar.vue'
 }
 
 .content {
-  padding: 5px;
+  padding: 10px;
 }
 
 .tab-bar {

@@ -1,6 +1,6 @@
 <template>
   <el-menu default-active="2" class="el-menu" :collapse="isCollapse">
-    <el-card shadow="always">Always</el-card> 123
+    <el-card shadow="always">Always</el-card>
     <el-menu-item index="1" class="centered-menu-item">
       <el-icon><UserFilled /></el-icon>
       <template #title>Navigator One</template>
@@ -48,5 +48,9 @@ onBeforeUnmount(() => {
 .el-menu.el-menu--collapse {
   width: 64px;
   height: 100vh;
+}
+
+.el-card {
+  margin: 10px;
 }
 </style>
