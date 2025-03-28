@@ -163,7 +163,7 @@ $colors: (
     background-color: #{$arma-card-bg} !important; /* Semi-transparent background */
     border-bottom-color: #{$dark-card-border} !important;
     color: #{$dark-card-text} !important;
-    background-image: url('https://i.gifer.com/74LE.gif');
+    //background-image: url('https://i.gifer.com/74LE.gif');
     font-weight: 600;
     font-size: 20px;
   }
@@ -193,6 +193,13 @@ $colors: (
   .el-button--primary {
     --el-button-bg-color: #{$dark-text-color};
     --el-button-text-color: #{$arma-card-bg};
+  }
+
+  .el-input__inner,
+  .el-textarea__inner,
+  .el-input__wrapper {
+    background-color: #ebe0c7 !important;
+    color: #{$arma-menu-bg} !important;
   }
 }
 

@@ -1,29 +1,24 @@
 <template>
   <div class="post-list">
-    <el-card v-for="post in posts" :key="post.id">
-      <template #header>
-        <div class="card-header">
-          <span>{{ post.title }}</span>
-        </div>
-      </template>
-      <div>{{ post.content }}</div>
-    </el-card>
+    <PostItem v-for="post in posts" :key="post.id" :post="post" />
   </div>
 </template>
 
 <script lang="ts">
 import type { PropType } from 'vue'
-interface Post {
-  title: string
-  content: string
-  id: number
-}
-
+import type { Post } from './models'
+import PostItem from './PostItem.vue'
+import TestButton from './UI/testButton.vue'
 export default {
   name: 'PostList',
+  components: {
+    PostItem,
+    TestButton,
+  },
   data() {
     return {}
   },
+
   props: {
     posts: {
       type: Array as PropType<Post[]>,
