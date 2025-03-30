@@ -1,19 +1,17 @@
 <template>
-  <el-card>
-    <form style="display: flex; flex-direction: column; gap: 10px">
-      <h4>{{ formTitle }}</h4>
-      <el-input v-model="post.title" placeholder="Title" />
-      <el-input v-model="post.body" placeholder="Content" type="textarea" rows="4" />
-      <el-button class="create-button" type="primary" @click="createPost(post)">Create</el-button>
-    </form>
-  </el-card>
+  <el-form>
+    <my-input v-model="post.title" placeholder="Title" />
+    <el-input v-model="post.body" placeholder="Content" type="textarea" rows="4" />
+    <el-button class="create-button" type="primary" @click="createPost(post)">Create</el-button>
+  </el-form>
 </template>
 
 <script lang="ts">
 import type { PropType } from 'vue'
-import type { Post } from '@/components/post-components/models'
+import type { Post } from './models'
+
 export default {
-  name: 'PostForm',
+  name: 'post-form',
   data() {
     return {
       post: {} as Post,
@@ -48,7 +46,9 @@ export default {
 .create-button {
   margin-left: auto;
 }
-.el-card {
-  margin-bottom: 20px;
+.el-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 </style>
