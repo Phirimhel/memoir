@@ -1,7 +1,7 @@
 <template>
-  <el-button>
+  <button>
     <slot></slot>
-  </el-button>
+  </button>
 </template>
 
 <script lang="ts">

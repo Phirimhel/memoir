@@ -5,10 +5,7 @@
       <div class="card-header">
         <span>✪ {{ post.title }}</span>
         <div>
-          <PostDropDown
-            @emitEditPost="console.log('emit edit post')"
-            @emitDeletePost="console.log('emit delite post')"
-          />
+          <PostDropDown @emitDeletePost="emitDeletePost(post)" />
         </div>
       </div>
     </template>
@@ -21,14 +18,20 @@ import type { Post } from './models'
 import type { PropType } from 'vue'
 
 export default {
-  name: 'PostItem',
+  name: 'post-item',
   props: {
     post: {
       type: Object as PropType<Post>,
       required: true,
     },
   },
-  emits: ['editPost', 'deletePost'],
+  emits: ['editPost', 'emitDeletePost'],
+  methods: {
+    emitDeletePost(post: Post) {
+      console.log('emit delete post 3')
+      this.$emit('emitDeletePost', post)
+    },
+  },
 }
 </script>
 

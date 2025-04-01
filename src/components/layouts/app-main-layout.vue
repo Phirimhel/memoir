@@ -29,10 +29,10 @@
 </template>
 
 <script setup lang="ts">
-import Header from '@/components/layouts/element-plus-components/Header.vue'
-import MobileTabBar from '@/components/layouts/element-plus-components/MobileTabBar.vue'
-import Sidebar from './element-plus-components/Sidebar.vue'
-import Content from './element-plus-components/Content.vue'
+import Header from '@/components/layouts/element-plus-components/header.vue'
+import MobileTabBar from '@/components/layouts/element-plus-components/mobile-tab-bar.vue'
+import Sidebar from '@/components/layouts/element-plus-components/sidebar.vue'
+import Content from '@/components/layouts/element-plus-components/content.vue'
 import ThemesSwitcher from '@/components/buttons/ThemesSwitcher.vue'
 </script>
 
@@ -62,7 +62,6 @@ import ThemesSwitcher from '@/components/buttons/ThemesSwitcher.vue'
 /* Scrollable content */
 .content-wrapper {
   flex: 1;
-  overflow-y: auto;
 }
 
 .content {
