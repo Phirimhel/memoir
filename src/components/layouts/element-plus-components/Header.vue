@@ -8,7 +8,6 @@
 </template>
 
 <script setup lang="ts"></script>
-
 <style scoped>
 .header {
   text-align: center;

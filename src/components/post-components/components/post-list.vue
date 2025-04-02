@@ -1,11 +1,10 @@
 <template>
   <div class="post-list" v-if="posts.length > 0">
-    <post-item
-      v-for="post in posts"
-      :key="post.id"
-      :post="post"
-      @emitDeletePost="deletePost(post)"
-    />
+    <TransitionGroup name="list">
+      <div v-for="post in posts" :key="post.id">
+        <post-item :post="post" @emitDeletePost="deletePost(post)" />
+      </div>
+    </TransitionGroup>
   </div>
   <div v-else class="no-posts-container">
     <no-posts />
@@ -35,7 +34,6 @@ export default {
   },
   methods: {
     deletePost(post: Post) {
-      console.log('delete post 2')
       this.$emit('emitDeletePost', post)
     },
   },
@@ -46,6 +44,23 @@ export default {
 .post-list {
   display: flex;
   flex-direction: column;
+  overflow-y: hidden;
   gap: 20px;
+}
+
+.list-enter-active {
+  transition: all 0.3s ease;
+}
+.list-leave-active {
+  transition: all 0.2s ease;
+  position: absolute;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: scale(0.6);
+}
+.list-move {
+  transition: transform 0.1s ease;
 }
 </style>

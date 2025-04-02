@@ -1,5 +1,5 @@
 <template>
-  <el-input @update:modelValue="$emit('update:modelValue', $event)" :placeholder="placeholder" />
+  <el-input :placeholder="placeholder" />
 </template>
 
 <script lang="ts">

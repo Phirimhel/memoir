@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import MainLayout from '@/components/layouts/app-main-layout.vue'
-import '@/styles/themes.scss'
+import '@/shared/lib/styles/themes.scss'
 </script>
 
 <style lang="scss" scoped>
