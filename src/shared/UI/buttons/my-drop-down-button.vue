@@ -12,7 +12,7 @@
 
 <script lang="ts">
 export default {
-  name: 'MyDropDownButton',
+  name: 'my-drop-down-button',
   emits: ['emitEditPost', 'emitDeletePost'],
   methods: {
     emitEditPost() {

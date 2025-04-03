@@ -1,8 +1,8 @@
 <template>
-  <el-form>
+  <el-form :title="formTitle">
     <my-input v-model="post.title" placeholder="Title" />
-    <el-input v-model="post.body" placeholder="Content" type="textarea" rows="4" />
-    <el-button class="create-button" type="primary" @click="createPost(post)">Create</el-button>
+    <my-textarea v-model="post.body" placeholder="Body" />
+    <my-button @click="createPost">Create post</my-button>
   </el-form>
 </template>
 
@@ -21,6 +21,15 @@ export default {
     formTitle: {
       type: String as PropType<string>,
       required: true,
+    },
+  },
+
+  watch: {
+    post: {
+      handler(newVal: Post) {
+        console.log(`post changed to: `, newVal)
+      },
+      deep: true,
     },
   },
   methods: {
@@ -43,7 +52,7 @@ export default {
 </script>
 
 <style scoped>
-.create-button {
+.el-button {
   margin-left: auto;
 }
 .el-form {

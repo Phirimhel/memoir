@@ -7,18 +7,20 @@
     </aside>
 
     <div class="main-content">
-      <ThemeTogle />
-      <main class="content-wrapper">
-        <!-- Header -->
-        <header class="header">
-          <slot name="header"><Header /></slot>
-        </header>
+      <el-scrollbar>
+        <ThemeTogle />
+        <main class="content-wrapper">
+          <!-- Header -->
+          <header class="header">
+            <slot name="header"><Header /></slot>
+          </header>
 
-        <!-- Content -->
-        <div class="content">
-          <Content />
-        </div>
-      </main>
+          <!-- Content -->
+          <div class="content">
+            <Content />
+          </div>
+        </main>
+      </el-scrollbar>
     </div>
 
     <!-- Mobile Footer -->
@@ -56,12 +58,13 @@ import ThemesSwitcher from '@/components/buttons/ThemesSwitcher.vue'
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 
 /* Scrollable content */
 .content-wrapper {
   flex: 1;
+  margin-right: 5px;
+  margin-bottom: 20px;
 }
 
 .content {
@@ -97,6 +100,9 @@ import ThemesSwitcher from '@/components/buttons/ThemesSwitcher.vue'
 
   .footer {
     display: block;
+  }
+  .main-content {
+    height: 88vh;
   }
 }
 </style>

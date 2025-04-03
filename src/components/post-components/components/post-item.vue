@@ -5,7 +5,7 @@
       <div class="card-header">
         <span>✪ {{ post.title }}</span>
         <div>
-          <PostDropDown @emitDeletePost="emitDeletePost(post)" />
+          <my-drop-down-button @emitDeletePost="emitDeletePost(post)" />
         </div>
       </div>
     </template>
