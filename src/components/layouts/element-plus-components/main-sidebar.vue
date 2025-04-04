@@ -1,9 +1,9 @@
 <template>
-  <el-menu default-active="2" class="el-menu" :collapse="isCollapse">
+  <el-menu :default-active="activeIndex" class="el-menu" :collapse="isCollapse">
     <el-card shadow="always">Always</el-card>
-    <el-menu-item index="1" class="centered-menu-item">
+    <el-menu-item :index="routes.posts" @click="$router.push(routes.posts)">
       <el-icon><UserFilled /></el-icon>
-      <template #title>Navigator One</template>
+      <template #title>Posts</template>
     </el-menu-item>
     <el-menu-item index="2">
       <el-icon><icon-menu /></el-icon>
@@ -13,17 +13,29 @@
       <el-icon><document /></el-icon>
       <template #title>Navigator Three</template>
     </el-menu-item>
-    <el-menu-item index="4">
+    <el-menu-item :index="routes.settings" @click="$router.push(routes.settings)">
       <el-icon><setting /></el-icon>
-      <template #title>Navigator Four</template>
+      <template #title>Settings</template>
     </el-menu-item>
   </el-menu>
 </template>
 
+const routes = [ { path: '/posts', component: RootPostPage, }, { path: '/settings', component:
+RootSettingsPage, }, ]
+
 <script lang="ts" setup>
+const routes = {
+  posts: '/main/content/posts',
+  settings: '/main/content/settings',
+}
+
 import { Document, Menu as IconMenu, Setting } from '@element-plus/icons-vue'
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
+import { useRoute } from 'vue-router'
+
 const isCollapse = ref(false)
+const route = useRoute()
+const activeIndex = ref(route.path)
 
 const updateCollapse = () => {
   isCollapse.value = window.innerWidth <= 1024
@@ -32,6 +44,7 @@ const updateCollapse = () => {
 onMounted(() => {
   window.addEventListener('resize', updateCollapse)
   updateCollapse()
+  activeIndex.value = route.path
 })
 
 onBeforeUnmount(() => {
