@@ -1,9 +1,6 @@
-<template>
-  <MainLayout />
-</template>
+<template><router-view /></template>
 
 <script setup lang="ts">
-import MainLayout from '@/components/layouts/app-main-layout.vue'
 import '@/shared/lib/styles/themes.scss'
 </script>
 

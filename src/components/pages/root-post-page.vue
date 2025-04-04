@@ -3,28 +3,39 @@
     <div class="header-container">
       <my-button @click="openFormDialog">Create Post</my-button>
       <my-input v-model="searchQuery" placeholder="Search" />
-      <my-select
-        :options="options"
-        v-model="selectedOption"
-        placeholder="Sort by"
-        @change="sortPosts"
-      />
+      <my-select :options="options" v-model="selectedOption" placeholder="Sort by" />
+    </div>
+
+    <div class="post-total-container">
+      <el-tag type="warning" style="width: 105px">Total posts: {{ totalPosts }}</el-tag>
     </div>
 
     <my-dialog v-model="dialogFormVisible" title="Create post">
       <post-form :formTitle="'Create post'" @emitCreatePost="createPost" v-loading="formLoading" />
     </my-dialog>
 
-    <post-list :posts="searchedSortedPosts" @editPost="editPost" @emitDeletePost="deletePost" />
+    <post-list
+      :posts="searchedSortedPosts"
+      @editPost="editPost"
+      @emitDeletePost="deletePost"
+      :loading="loading"
+    />
+    <!-- <el-pagination
+    background
+    layout="prev, pager, next"
+    :total="25"
+    :page-size="limit"
+    @change="changePage"
+    /> -->
   </div>
+  <div ref="observer" class="observer"></div>
 </template>
 
 <script lang="ts">
-import PostForm from './components/post-form.vue'
-import PostList from './components/post-list.vue'
-import type { Post } from './components/models'
-import { getPosts } from './components/post.service'
-import header from '../layouts/element-plus-components/header.vue'
+import PostForm from '../post-components/components/post-form.vue'
+import PostList from '../post-components/components/post-list.vue'
+import type { Post } from '../post-components/components/models'
+import { getPosts } from '../post-components/components/post.service'
 
 type AllowedSelectionKeys = Pick<Post, 'title' | 'body'>
 
@@ -33,7 +44,6 @@ export default {
   components: {
     PostList,
     PostForm,
-    header,
   },
   data() {
     return {
@@ -47,11 +57,28 @@ export default {
       ],
       selectedOption: 'sort by',
       searchQuery: '',
+      page: 1,
+      limit: 6,
+      totalPosts: 0,
+      totalPages: 0,
     }
   },
 
   async mounted() {
     await this.fetchPosts()
+
+    const options = {
+      rootMargin: '0px',
+      threshold: 1.0,
+    }
+    const callback = (entries: IntersectionObserverEntry[]) => {
+      if (entries[0].isIntersecting && this.page < this.totalPages) {
+        console.log('DETECTED')
+        this.loadMorePosts()
+      }
+    }
+    const observer = new IntersectionObserver(callback, options)
+    observer.observe(this.$refs.observer as HTMLElement)
   },
 
   computed: {
@@ -67,9 +94,11 @@ export default {
     },
 
     searchedSortedPosts(): Post[] {
-      return this.sortedPosts.filter((post) => {
+      const posts = this.sortedPosts.filter((post) => {
         return post.title.toLowerCase().includes(this.searchQuery.toLowerCase())
       })
+      this.totalPosts = posts.length
+      return posts
     },
   },
 
@@ -78,7 +107,6 @@ export default {
   methods: {
     editPost(post: Post) {},
     deletePost(post: Post) {
-      console.log('delete post 1')
       this.posts = this.posts.filter((p) => p.id !== post.id)
     },
     async createPost(post: Post) {
@@ -93,20 +121,33 @@ export default {
       this.dialogFormVisible = true
     },
 
-    sortPosts() {
-      console.log('sort posts - ', this.selectedOption)
-    },
+    // changePage(page: number) {
+    //   this.page = page
+    //   this.fetchPosts()
+    // },
 
     async fetchPosts() {
       try {
         this.loading = true
         await new Promise((resolve) => setTimeout(() => resolve(true), 1000))
-        const response = await getPosts()
+        const response = await getPosts(this.page, this.limit)
         this.posts = response.data
+        this.totalPosts = Number(response.headers['x-total-count']) || 0
+        this.totalPages = this.totalPosts / this.limit || 0
       } catch (error) {
         console.error('[**Error fetching posts**]:', error)
       } finally {
         this.loading = false
+      }
+    },
+
+    async loadMorePosts() {
+      try {
+        const response = await getPosts(++this.page, this.limit)
+        this.posts = [...this.posts, ...response.data]
+      } catch (error) {
+        console.error('[**Error fetching posts**]:', error)
+      } finally {
       }
     },
   },
@@ -130,5 +171,17 @@ export default {
 
 .el-input {
   height: 32px;
+}
+
+.el-pagination {
+  margin-top: 20px;
+}
+
+.post-total-container {
+  margin-bottom: 20px;
+}
+
+.observer {
+  height: 120px;
 }
 </style>

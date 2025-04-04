@@ -35,7 +35,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import type { TabsPaneContext } from 'element-plus'
-import { Setting, UserFilled, Lock, List } from '@element-plus/icons-vue'
+import { Setting, UserFilled } from '@element-plus/icons-vue'
 
 const activeName = ref('first')
 
