@@ -6,6 +6,7 @@ import '@/shared/lib/styles/themes.scss'
 
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import my_ui from '@/shared/UI'
+import router from './components/router/router'
 
 const app = createApp(App)
 
@@ -17,5 +18,4 @@ for (const [key, component] of Object.entries(my_ui)) {
   app.component(key, component)
 }
 
-app.use(ElementPlus)
-app.mount('#app')
+app.use(ElementPlus).use(router).mount('#app')

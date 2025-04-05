@@ -2,7 +2,7 @@
   <div class="post-list" v-if="posts.length > 0">
     <TransitionGroup name="list">
       <div v-for="post in posts" :key="post.id">
-        <post-item :post="post" @emitDeletePost="deletePost(post)" />
+        <post-item :post="post" @emitDeletePost="deletePost(post)" :loading="loading" />
       </div>
     </TransitionGroup>
   </div>
@@ -14,7 +14,7 @@
 <script lang="ts">
 import type { PropType } from 'vue'
 import type { Post } from './models'
-import PostItem from './post-item.vue'
+import PostItem from './post-list-item.vue'
 import NoPosts from './no-posts.vue'
 export default {
   name: 'post-list',
@@ -29,6 +29,10 @@ export default {
   props: {
     posts: {
       type: Array as PropType<Post[]>,
+      required: true,
+    },
+    loading: {
+      type: Boolean,
       required: true,
     },
   },
@@ -61,6 +65,6 @@ export default {
   transform: scale(0.6);
 }
 .list-move {
-  transition: transform 0.1s ease;
+  transition: transform 0.4s ease;
 }
 </style>

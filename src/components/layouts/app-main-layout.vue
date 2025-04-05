@@ -17,7 +17,7 @@
 
           <!-- Content -->
           <div class="content">
-            <Content />
+            <router-view />
           </div>
         </main>
       </el-scrollbar>
@@ -31,10 +31,9 @@
 </template>
 
 <script setup lang="ts">
-import Header from '@/components/layouts/element-plus-components/header.vue'
-import MobileTabBar from '@/components/layouts/element-plus-components/mobile-tab-bar.vue'
-import Sidebar from '@/components/layouts/element-plus-components/sidebar.vue'
-import Content from '@/components/layouts/element-plus-components/content.vue'
+import Header from '@/components/layouts/element-plus-components/main-header.vue'
+import MobileTabBar from './element-plus-components/main-mobile-tab-bar.vue'
+import Sidebar from '@/components/layouts/element-plus-components/main-sidebar.vue'
 import ThemesSwitcher from '@/components/buttons/ThemesSwitcher.vue'
 </script>
 
