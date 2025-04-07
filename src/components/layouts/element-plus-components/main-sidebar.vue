@@ -5,6 +5,14 @@
       <el-icon><UserFilled /></el-icon>
       <template #title>Posts</template>
     </el-menu-item>
+    <el-menu-item :index="routes.postsStore" @click="$router.push(routes.postsStore)">
+      <el-icon><UserFilled /></el-icon>
+      <template #title>Posts Store</template>
+    </el-menu-item>
+    <el-menu-item :index="routes.postsStoreComposition" @click="$router.push(routes.postsStoreComposition)">
+      <el-icon><UserFilled /></el-icon>
+      <template #title>Posts Store Composition</template>
+    </el-menu-item>
     <el-menu-item index="2">
       <el-icon><icon-menu /></el-icon>
       <template #title>Navigator Two</template>
@@ -20,18 +28,11 @@
   </el-menu>
 </template>
 
-const routes = [ { path: '/posts', component: RootPostPage, }, { path: '/settings', component:
-RootSettingsPage, }, ]
-
 <script lang="ts" setup>
-const routes = {
-  posts: '/main/content/posts',
-  settings: '/main/content/settings',
-}
-
 import { Document, Menu as IconMenu, Setting } from '@element-plus/icons-vue'
-import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRoute } from 'vue-router'
+import { routes } from '@/router/routes'
 
 const isCollapse = ref(false)
 const route = useRoute()

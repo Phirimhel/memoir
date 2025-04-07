@@ -1,5 +1,5 @@
 <template>
-  <el-dialog width="900">
+  <el-dialog width="900" :open-auto-focus="false">
     <template #header>
       <div class="dialog-header">
         <el-icon><Promotion /></el-icon> {{ title }}
@@ -10,14 +10,11 @@
 </template>
 
 <script lang="ts">
+import toggleMixin from '@/mixins/imputsMexins'
+
 export default {
   name: 'my-dialog',
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-  },
+  mixins: [toggleMixin],
 }
 </script>
 

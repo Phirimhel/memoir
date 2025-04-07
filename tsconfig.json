@@ -1,11 +1,12 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "*": ["node_modules/*"]
     },
-    {
-      "path": "./tsconfig.app.json"
-    }
-  ]
+    "types": ["vue", "node"]
+  },
+  "include": ["src"]
 }

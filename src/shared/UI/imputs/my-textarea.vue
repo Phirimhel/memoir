@@ -3,13 +3,10 @@
 </template>
 
 <script lang="ts">
+import toggleMixin from '@/mixins/imputsMexins'
+
 export default {
   name: 'my-input',
-  props: {
-    placeholder: {
-      type: String,
-      required: true,
-    },
-  },
+  mixins: [toggleMixin],
 }
 </script>

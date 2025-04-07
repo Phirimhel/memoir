@@ -1,21 +1,4 @@
 <template>
-  <el-skeleton animated style="--el-skeleton-circle-size: 40px" :loading="loading">
-    <template #template>
-      <el-card>
-        <template #header>
-          <div style="display: flex; justify-content: space-between; align-items: center">
-            <el-skeleton-item animated variant="text" style="width: 70%" />
-            <el-skeleton-item animated variant="circle" />
-          </div>
-        </template>
-
-        <div style="display: flex; flex-direction: column; gap: 10px">
-          <el-skeleton-item animated variant="text" style="width: 100%" />
-          <el-skeleton-item animated variant="text" style="width: 60%" />
-        </div>
-      </el-card>
-    </template>
-    <template #default>
       <el-card>
         <template #header>
           <div class="card-header">
@@ -31,16 +14,17 @@
           {{ post.body }}
         </div>
         <div class="post-body-button">
-          <my-button :type="''">Go to post detail</my-button>
+          <my-button :type="''" @click="$router.push(routes.postDetail(post.id))">
+            Go to post detail
+          </my-button>
         </div>
       </el-card>
-    </template>
-  </el-skeleton>
 </template>
 
 <script lang="ts">
 import type { Post } from './models'
 import type { PropType } from 'vue'
+import { routes } from '../../../router/routes'
 
 export default {
   name: 'post-item',
@@ -53,6 +37,11 @@ export default {
       type: Boolean,
       required: true,
     },
+  },
+  data() {
+    return {
+      routes,
+    }
   },
   emits: ['editPost', 'emitDeletePost'],
   methods: {
