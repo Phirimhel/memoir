@@ -1,9 +1,11 @@
 <template>
+  <div v-loading="formLoading">
   <el-form :title="formTitle">
-    <my-input v-model="post.title" placeholder="Title" />
+    <my-input v-model="post.title" placeholder="Title" v-focus />
     <my-textarea v-model="post.body" placeholder="Body" />
     <my-button @click="createPost">Create post</my-button>
   </el-form>
+  </div>
 </template>
 
 <script lang="ts">
@@ -15,6 +17,7 @@ export default {
   data() {
     return {
       post: {} as Post,
+      focused: true,
     }
   },
   props: {
@@ -22,22 +25,19 @@ export default {
       type: String as PropType<string>,
       required: true,
     },
-  },
-
-  watch: {
-    post: {
-      handler(newVal: Post) {
-        console.log(`post changed to: `, newVal)
-      },
-      deep: true,
+    formLoading: {
+      type: Boolean as PropType<boolean>,
+      required: true,
     },
   },
+
+
   methods: {
     clearForm(): void {
       this.post = {} as Post
     },
 
-    createPost(post: Post): void {
+    createPost(): void {
       const newPost = {
         id: Math.random(),
         title: this.post.title,

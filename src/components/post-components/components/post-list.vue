@@ -1,4 +1,5 @@
 <template>
+  
   <div class="post-list" v-if="posts.length > 0">
     <TransitionGroup name="list">
       <div v-for="post in posts" :key="post.id">
@@ -6,9 +7,11 @@
       </div>
     </TransitionGroup>
   </div>
-  <div v-else class="no-posts-container">
-    <no-posts />
+  <div v-else class="no-posts-container"> 
+    <post-load-sceleton :loading="loading" :items="6" />
   </div>
+
+
 </template>
 
 <script lang="ts">
@@ -16,11 +19,13 @@ import type { PropType } from 'vue'
 import type { Post } from './models'
 import PostItem from './post-list-item.vue'
 import NoPosts from './no-posts.vue'
+import PostLoadSceleton from './post-load-sceleton.vue'
 export default {
   name: 'post-list',
   components: {
     PostItem,
     NoPosts,
+    PostLoadSceleton,
   },
   data() {
     return {}
@@ -66,5 +71,10 @@ export default {
 }
 .list-move {
   transition: transform 0.4s ease;
+}
+.post-load-sceleton {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 </style>

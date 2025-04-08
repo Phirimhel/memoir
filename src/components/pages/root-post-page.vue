@@ -11,7 +11,7 @@
     </div>
 
     <my-dialog v-model="dialogFormVisible" title="Create post">
-      <post-form :formTitle="'Create post'" @emitCreatePost="createPost" v-loading="formLoading" />
+      <post-form :formTitle="'Create post'" @emitCreatePost="createPost" :formLoading="formLoading" />
     </my-dialog>
 
     <post-list
@@ -28,7 +28,7 @@
     @change="changePage"
     /> -->
   </div>
-  <div ref="observer" class="observer"></div>
+  <div v-if="!loading" v-intersection="loadMorePosts" class="observer"></div>
 </template>
 
 <script lang="ts">
@@ -66,19 +66,6 @@ export default {
 
   async mounted() {
     await this.fetchPosts()
-
-    const options = {
-      rootMargin: '0px',
-      threshold: 1.0,
-    }
-    const callback = (entries: IntersectionObserverEntry[]) => {
-      if (entries[0].isIntersecting && this.page < this.totalPages) {
-        console.log('DETECTED')
-        this.loadMorePosts()
-      }
-    }
-    const observer = new IntersectionObserver(callback, options)
-    observer.observe(this.$refs.observer as HTMLElement)
   },
 
   computed: {
