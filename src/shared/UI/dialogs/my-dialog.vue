@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import toggleMixin from '@/mixins/imputsMexins'
+import toggleMixin from '@/shared/mixins/imputsMexins'
 
 export default {
   name: 'my-dialog',

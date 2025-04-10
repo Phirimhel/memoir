@@ -11,12 +11,7 @@
 
 <script lang="ts">
 import type { PropType } from 'vue'
-
-interface Option {
-  value: string
-  label: string
-}
-
+import type { Option } from '@/shared/model/option'
 export default {
   name: 'my-select',
   props: {
@@ -26,7 +21,7 @@ export default {
     },
     value: {
       type: String,
-      required: true,
+      required: false,
     },
     options: {
       type: Array as PropType<Option[]>,
