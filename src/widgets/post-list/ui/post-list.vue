@@ -2,7 +2,10 @@
   <div class="post-list" v-if="posts.length > 0">
     <TransitionGroup name="list">
       <div v-for="post in posts" :key="post.id">
-        <post-item :post="post" @emitDeletePost="deletePost(post)" :loading="loading" />
+        <post-item :post="post" 
+        @emitDeletePost="deletePost(post)" 
+        @emitEditPost="editPost(post)"
+         :loading="loading" />
       </div>
     </TransitionGroup>
   </div>
@@ -42,6 +45,10 @@ export default {
     deletePost(post: Post) {
       console.log('delete post 2', post)
       this.$emit('emitDeletePost', post)
+    },
+    editPost(post: Post) {
+      console.log('edit post 2', post)
+      this.$emit('emitEditPost', post)
     },
   },
 }

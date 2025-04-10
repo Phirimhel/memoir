@@ -9,6 +9,6 @@
 import { onUpdated } from 'vue'
 
 onUpdated(() => {
-  console.log('🔁 ChildTwo перерендерен')
+  console.log('🔁 🔵 ChildTwo перерендерен')
 })
 </script>

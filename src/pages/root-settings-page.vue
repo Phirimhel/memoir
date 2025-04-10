@@ -1,66 +1,80 @@
+<!-- App.vue -->
 <template>
   <div>
-    {{ data }}
-    <el-button @click="change">Change</el-button>
-    <h2>🔍 Поиск пользователей</h2>
-    <input v-model="search" placeholder="Поиск по имени" />
+    <h2>🔄 Ререндер компонентов</h2>
+    <button @click="increment">Увеличить счётчик</button>
+    <p>Счётчик: {{ counter }}</p>
+    <button @click="add">Добавить счётчик</button>
+    <button @click="addAfterNextTick">nextTick</button>
+    <ChildOne :counter="counter" />
+    <ChildTwo />
+    <ChildThree :counter="counters"/>
+    {{ counters }}
 
-    <p><strong>Список с методом:</strong></p>
-    <ul>
-      <li v-for="user in filterUsers()" :key="user.id">
-        {{ user.name }}
-      </li>
-    </ul>
-
-    <p><strong>Список с computed:</strong></p>
-    <ul>
-      <li v-for="user in filteredUsers" :key="user.id">
-        {{ user.name }}
-      </li>
-    </ul>
+    <div>
+    <input v-model.lazy="msg" />
+    <p>Сообщение: {{ msg }}</p>
   </div>
+  </div>
+
+
+  <div ref="myDiv">{{ message }}</div>
+  <button @click="updateSomething">Update</button>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      search: '',
-      data: 0,
-      users: [
-        { id: 1, name: 'Alice' },
-        { id: 2, name: 'Bob' },
-        { id: 3, name: 'Charlie' },
-        { id: 4, name: 'David' },
-      ],
-    }
-  },
-  methods: {
-    filterUsers() {
-      const start = performance.now()
-      // Имитация тяжёлого расчёта
-      for (let i = 0; i < 10000000; i++) {}
-      const duration = performance.now() - start
-      console.log(`⏱️ 🚨 method took ${duration.toFixed(2)} ms`)
-      return this.users.filter((user) =>
-        user.name.toLowerCase().includes(this.search.toLowerCase()),
-      )
-    },
-    change() {
-      this.data = this.data + 1
-    },
-  },
-  computed: {
-    filteredUsers() {
-      const start = performance.now()
-      // Имитация тяжёлого расчёта
-      for (let i = 0; i < 10000000; i++) {}
-      const duration = performance.now() - start
-      console.log(`⏱️ ✅  Computed took ${duration.toFixed(2)} ms`)
-      return this.users.filter((user) =>
-        user.name.toLowerCase().includes(this.search.toLowerCase()),
-      )
-    },
-  },
+<script setup>
+import ChildOne from './ChildOne.vue'
+import ChildTwo from './ChildTwo.vue'
+import ChildThree from './ChildThree.vue'
+import { ref, shallowRef } from 'vue'
+const counter = ref(0)
+const counters = shallowRef([])
+const msg = ref('')
+import { nextTick } from 'vue'
+
+const increment = async () => {
+  counter.value++
+  await nextTick()
 }
+
+const add = async () => {
+  counters.value.push(counter.value)
+ 
+
+}
+
+const addAfterNextTick = async () => {
+ 
+  console.log('🔁 🔴ChildOne перерендерен после nextTick')
+}
+
+
+const message = ref('Hello!')
+const myDiv = ref(null)
+
+
+
+  function updateSomething() {
+    message.value = 'Updated!'
+    console.log(myDiv.value.textContent) 
+
+  setTimeout(() => {
+    console.log('⏳ setTimeout сработал')
+  
+
+    nextTick(() => {
+      console.log('✅ nextTick внутри setTimeout')
+      console.log(myDiv.value.textContent) 
+    })
+
+    console.log('🔸 После вызова nextTick')
+ 
+  }, 3000)
+
+
+  console.log(myDiv.value.textContent) 
+ 
+
+}
+
 </script>

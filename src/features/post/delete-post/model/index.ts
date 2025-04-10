@@ -1,1 +1,1 @@
-export * from './useCreatePost'
+export * from './deletePost'

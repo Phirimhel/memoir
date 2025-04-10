@@ -1,1 +1,1 @@
-export * from './create-post-form.vue'
+export { default as CreatePostForm } from './create-post-form.vue'

@@ -37,7 +37,7 @@
 
 <script lang="ts">
 import PostForm from '@/features/post/create-post/ui/create-post-form.vue'
-import PostList from '@/entities/posts/ui/post-list.vue'
+import PostList from '@/widgets/post-list/ui/post-list.vue'
 import type { Post } from '@/entities/posts/types'
 import { getPosts } from '@/entities/posts/apis/getPosts.service'
 

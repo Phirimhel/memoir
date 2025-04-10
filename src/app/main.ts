@@ -12,6 +12,7 @@ import router from '@/shared/router/router'
 
 const app = createApp(App)
 
+
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }

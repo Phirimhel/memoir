@@ -10,6 +10,6 @@ export function useSortedPosts(posts: Ref<Post[]>, sortKey: Ref<keyof Post>): Co
     const sampleValue = items[0][sortKey.value]
     const compare = getCompareFunction(sampleValue)
 
-    return items.sort((a, b) => compare(a[sortKey.value], b[sortKey.value]))
+    return [...items.sort((a, b) => compare(a[sortKey.value], b[sortKey.value]))]
   })
 }

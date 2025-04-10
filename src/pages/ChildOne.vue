@@ -13,6 +13,6 @@ const props = defineProps({
 })
 
 onUpdated(() => {
-  console.log('🔁 ChildOne перерендерен')
+  console.log('🔁 🟢 ChildOne перерендерен')
 })
 </script>

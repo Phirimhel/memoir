@@ -48,6 +48,9 @@ export default {
     emitDeletePost(post: Post) {
       this.$emit('emitDeletePost', post)
     },
+    emitEditPost(post: Post) {
+      this.$emit('emitEditPost', post)
+    },
   },
 }
 </script>

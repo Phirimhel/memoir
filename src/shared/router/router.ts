@@ -7,7 +7,7 @@ import RootSettingsPage from '@/pages/root-settings-page.vue'
 import RootPostPageStore from '@/pages/root-post-page-store.vue'
 import RootPostPageStoreComposition from '@/pages/root-post-page-store-compostition.vue'
 import PostDetail from '@/entities/posts/ui/post-detail.vue'
-
+import DinamycAttribute from '@/pages/tests/dinamycAttribute.vue'
 const routes = [
   {
     path: '/',
@@ -45,10 +45,14 @@ const routes = [
                 path: 'posts-store-composition',
                 component: RootPostPageStoreComposition,
               },
-              {
-                path: 'posts-store-composition/:id',
-                component: PostDetail,
-              },
+                {
+                  path: 'posts-store-composition/:id',
+                  component: PostDetail,
+                },
+                {
+                  path: 'tests/dinamyc-attribute',
+                  component: DinamycAttribute,
+                },
             ],
           },
         ],

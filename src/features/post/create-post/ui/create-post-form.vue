@@ -13,7 +13,7 @@ import type { PropType } from 'vue'
 import type { Post } from '@/entities/posts/types'
 
 export default {
-  name: 'post-form',
+  name: 'create-post-form',
   data() {
     return {
       post: {} as Post,
